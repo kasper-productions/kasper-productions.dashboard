@@ -50,6 +50,35 @@ app.factory('ApiManager', function ($q) {
     request.send(data);
   };
 
+  apiManager.postLoginUser = function (email, password) {
+    var deferred = $q.defer();
+    var request = new XMLHttpRequest();
+
+    var urlPOST = BASE_URL + '/login';
+
+    var data = JSON.stringify(
+      {
+        "email": email,
+        "password": password,
+        "secret": SECRET
+      }
+    );
+
+    request.open("POST", urlPOST);
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.onreadystatechange = function () {
+      if (request.readyState === 4) {
+        if (request.status == 201) {
+          deferred.resolve(request);
+        } else {
+          deferred.reject(request);
+        }
+      }
+    };
+    request.send(data);
+  };
+
   return apiManager;
 });
 

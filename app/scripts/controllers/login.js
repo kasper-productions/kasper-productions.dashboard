@@ -8,10 +8,11 @@
  * Controller of the kasperProductionsdashboardApp
  */
 angular.module('kasperProductionsdashboardApp')
-  .controller('LoginCtrl', function (ApiManager) {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('LoginCtrl', function ($scope, ApiManager) {
+
+    $scope.vm = {};
+
+    $scope.loginUser = function () {
+      ApiManager.postLoginUser($scope.vm.email, $scope.vm.password);
+    }
   });
