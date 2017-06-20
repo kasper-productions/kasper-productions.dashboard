@@ -8,10 +8,9 @@
  * Controller of the kasperProductionsdashboardApp
  */
 angular.module('kasperProductionsdashboardApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
+  .controller('MainCtrl', function ($scope, ApiManager) {
+    
+    $scope.isLoggedIn = function () {
+      return ApiManager.getUser() != null;
+    }
   });
