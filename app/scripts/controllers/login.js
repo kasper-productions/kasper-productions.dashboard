@@ -8,7 +8,7 @@
  * Controller of the kasperProductionsdashboardApp
  */
 angular.module('kasperProductionsdashboardApp')
-  .controller('LoginCtrl', function () {
+  .controller('LoginCtrl', function (ApiManager) {
     this.awesomeThings = [
       'HTML5 Boilerplate',
       'AngularJS',

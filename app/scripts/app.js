@@ -15,7 +15,10 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+
+    // managers
+    'kasperProductionsdashboardApp.apiManager'
   ])
   .config(function ($routeProvider) {
     $routeProvider
