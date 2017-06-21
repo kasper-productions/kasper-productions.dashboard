@@ -5,8 +5,8 @@ var app = angular.module('kasperProductionsdashboardApp.apiManager', []);
 
 app.factory('ApiManager', function ($q) {
 
-  var BASE_URL = "api.com";
-  var SECRET = "api.secret";
+  var BASE_URL = "http://localhost:3306";
+  var SECRET = "29dByc4wJaKeVj2YBSXzEVvirlpwkE26";
   var user = null;
 
   var apiManager = {};
@@ -25,13 +25,13 @@ app.factory('ApiManager', function ($q) {
     var deferred = $q.defer();
     var request = new XMLHttpRequest();
 
-    var urlPOST = BASE_URL + '/register';
+    var urlPOST = BASE_URL + '/users';
 
     var data = JSON.stringify(
       {
         "email": email,
         "password": password,
-        "secret": SECRET
+        "access_token": SECRET
       }
     );
 
@@ -54,22 +54,24 @@ app.factory('ApiManager', function ($q) {
     var deferred = $q.defer();
     var request = new XMLHttpRequest();
 
-    var urlPOST = BASE_URL + '/login';
+    var urlPOST = BASE_URL + '/auth';
 
     var data = JSON.stringify(
       {
-        "email": email,
-        "password": password,
-        "secret": SECRET
+        "access_token": SECRET
       }
     );
 
     request.open("POST", urlPOST);
     request.setRequestHeader("Content-Type", "application/json");
+    request.setRequestHeader("Authorization", "Basic " + btoa(email + ":" + password));
 
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
+        console.log(JSON.stringify(request));
         if (request.status == 201) {
+          var response = JSON.parse(request.responseText);
+          console.log(JSON.stringify(response, null, 2));
           deferred.resolve(request);
         } else {
           deferred.reject(request);
