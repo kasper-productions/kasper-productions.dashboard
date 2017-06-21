@@ -12,6 +12,12 @@ angular.module('kasperProductionsdashboardApp')
 
     $scope.vm = {};
 
+    $scope.$on('$viewContentLoaded', function () {
+      if (null != ApiManager.getUser()) {
+        $location.path('/home');
+      }
+    });
+
     $scope.loginUser = function () {
       ApiManager.postLoginUser($scope.vm.email, $scope.vm.password).then(
         function (success) {
