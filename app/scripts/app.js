@@ -18,7 +18,10 @@ angular
     'ngTouch',
 
     // managers
-    'kasperProductionsdashboardApp.apiManager'
+    'kasperProductionsdashboardApp.apiManager',
+    
+    //models
+    'kasperProductionsdashboardApp.userModel'
   ])
   .config(function ($routeProvider) {
     $routeProvider

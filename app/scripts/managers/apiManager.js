@@ -3,7 +3,7 @@
  */
 var app = angular.module('kasperProductionsdashboardApp.apiManager', []);
 
-app.factory('ApiManager', function ($q) {
+app.factory('ApiManager', function ($q, User) {
 
   var BASE_URL = "http://localhost:3306";
   var SECRET = "29dByc4wJaKeVj2YBSXzEVvirlpwkE26";
@@ -68,17 +68,23 @@ app.factory('ApiManager', function ($q) {
 
     request.onreadystatechange = function () {
       if (request.readyState === 4) {
-        console.log(JSON.stringify(request));
         if (request.status == 201) {
           var response = JSON.parse(request.responseText);
-          console.log(JSON.stringify(response, null, 2));
-          deferred.resolve(request);
+          var token = response.token;
+          var userJSON = response.user;
+          var userId = userJSON.id;
+          var username = userJSON.name;
+          var email = userJSON.email;
+
+          user = new User(token, username, email, userId);
+          deferred.resolve(true);
         } else {
           deferred.reject(request);
         }
       }
     };
     request.send(data);
+    return deferred.promise;
   };
 
   return apiManager;
