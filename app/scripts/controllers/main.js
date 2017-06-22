@@ -12,5 +12,9 @@ angular.module('kasperProductionsdashboardApp')
     
     $scope.isLoggedIn = function () {
       return ApiManager.getUser() != null;
-    }
+    };
+    
+    $scope.isAdmin = function () {
+      return ApiManager.getUser().isAdmin;
+    };
   });

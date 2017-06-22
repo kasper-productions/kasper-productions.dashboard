@@ -76,7 +76,9 @@ app.factory('ApiManager', function ($q, User) {
           var username = userJSON.name;
           var email = userJSON.email;
 
-          user = new User(token, username, email, userId);
+          //TODO: get if isAdmin
+
+          user = new User(token, username, email, false, userId);
           deferred.resolve(true);
         } else {
           deferred.reject(request);

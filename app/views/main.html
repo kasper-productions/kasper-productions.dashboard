@@ -1,4 +1,15 @@
 <div ng-if="!isLoggedIn()" class="jumbotron">
   <a href="#!/login" class="btn-sm btn-link">Please login to view home page</a>
 </div>
+<div ng-if="isLoggedIn()" class="jumbotron">
+  <div>
+    <h5>Dashboard</h5>
+    <button class="btn-sm btn-danger">Update profile</button>
+    <button class="btn-sm btn-primary">Upload photos</button>
+    <button class="btn-sm btn-success">Add videos</button>
+  </div>
+  <div ng-if="isAdmin()">
+    <p>Is admin</p>
+  </div>
+</div>
 

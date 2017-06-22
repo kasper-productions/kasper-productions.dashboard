@@ -5,10 +5,11 @@ var app = angular.module('kasperProductionsdashboardApp.userModel', []);
 
 app.factory('User', function () {
 
-  var User = function(token, name, email, id) {
+  var User = function(token, name, email, isAdmin, id) {
     this.token = token;
     this.name = name;
     this.email = email;
+    this.isAdmin = isAdmin;
     this.id = id;
   };
 
