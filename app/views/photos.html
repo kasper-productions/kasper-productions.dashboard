@@ -1,1 +1,18 @@
-<p>This is the photos view.</p>
+<div ng-if="!isLoggedIn()" class="jumbotron">
+  <a href="#!/login" class="btn-sm btn-link">Please login to view home page</a>
+</div>
+<div ng-if="isLoggedIn()" class="jumbotron">
+  <div>
+    <h5>Photos</h5>
+    <button class="btn btn-primary">Upload album</button>
+    <div id="albums-holder">
+      <div id="album" ng-repeat="album in albums">
+        <img ng-src="{{album.previewImage}}">
+        <span>{{album.name}}</span>
+      </div>
+    </div>
+  </div>
+  <div ng-if="isAdmin()">
+    <p>Is admin</p>
+  </div>
+</div>

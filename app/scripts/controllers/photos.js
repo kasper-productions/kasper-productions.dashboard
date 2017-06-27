@@ -8,6 +8,15 @@
  * Controller of the kasperProductionsdashboardApp
  */
 angular.module('kasperProductionsdashboardApp')
-  .controller('PhotosCtrl', function () {
-    
+  .controller('PhotosCtrl', function ($scope, ApiManager) {
+
+    $scope.albums = [];
+
+    $scope.$on('$viewContentLoaded', function () {
+      
+    });
+
+    $scope.isLoggedIn = function () {
+      return ApiManager.getUser() != null;
+    };
   });
