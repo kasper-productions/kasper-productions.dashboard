@@ -10,6 +10,7 @@
  */
 angular
   .module('kasperProductionsdashboardApp', [
+    'ui.bootstrap',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -19,7 +20,7 @@ angular
 
     // managers
     'kasperProductionsdashboardApp.apiManager',
-    
+
     //models
     'kasperProductionsdashboardApp.userModel'
   ])

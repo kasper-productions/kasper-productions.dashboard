@@ -4,7 +4,7 @@
 <div ng-if="isLoggedIn()" class="jumbotron">
   <div>
     <h5>Photos</h5>
-    <button class="btn btn-primary">Upload album</button>
+    <button class="btn-sm btn-primary" ng-click="createAlbum()">Upload album</button>
     <div id="albums-holder">
       <div id="album" ng-repeat="album in albums">
         <img ng-src="{{album.previewImage}}">
@@ -16,3 +16,9 @@
     <p>Is admin</p>
   </div>
 </div>
+
+<script type="text/ng-template" id="createAlbumModal.html">
+  <div id="member-modal-div">
+    <h5>Upload images here</h5>
+  </div>
+</script>
