@@ -11,6 +11,7 @@ angular.module('kasperProductionsdashboardApp')
   .controller('PhotosCtrl', function ($scope, ApiManager, $uibModal) {
 
     $scope.albums = [];
+    $scope.vm = {};
 
     $scope.$on('$viewContentLoaded', function () {
 
@@ -26,6 +27,10 @@ angular.module('kasperProductionsdashboardApp')
         windowClass: 'createAlbumModal',
         scope: $scope
       });
-    }
+    };
+
+    $scope.saveAlbum = function () {
+      console.log(JSON.stringify(document.getElementById('albumPhotos').files));
+    };
 
   });

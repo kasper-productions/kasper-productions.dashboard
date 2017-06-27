@@ -21,35 +21,6 @@ app.factory('ApiManager', function ($q, User) {
     return user;
   };
 
-  apiManager.postRegisterUser = function (email, password) {
-    var deferred = $q.defer();
-    var request = new XMLHttpRequest();
-
-    var urlPOST = BASE_URL + '/users';
-
-    var data = JSON.stringify(
-      {
-        "email": email,
-        "password": password,
-        "access_token": SECRET
-      }
-    );
-
-    request.open("POST", urlPOST);
-    request.setRequestHeader("Content-Type", "application/json");
-
-    request.onreadystatechange = function () {
-      if (request.readyState === 4) {
-        if (request.status == 201) {
-          deferred.resolve(request);
-        } else {
-          deferred.reject(request);
-        }
-      }
-    };
-    request.send(data);
-  };
-
   apiManager.postLoginUser = function (email, password) {
     var deferred = $q.defer();
     var request = new XMLHttpRequest();
@@ -79,6 +50,37 @@ app.factory('ApiManager', function ($q, User) {
           //TODO: get if isAdmin
 
           user = new User(token, username, email, false, userId);
+          deferred.resolve(true);
+        } else {
+          deferred.reject(request);
+        }
+      }
+    };
+    request.send(data);
+    return deferred.promise;
+  };
+
+  apiManager.postPhoto = function (photoName, albumName, photoUrl, photographers) {
+    var deferred = $q.defer();
+    var request = new XMLHttpRequest();
+
+    var urlPOST = BASE_URL + '/photos';
+
+    var data = JSON.stringify(
+      {
+        "access_token": SECRET
+      }
+    );
+
+    request.open("POST", urlPOST);
+    request.setRequestHeader("Content-Type", "application/json");
+
+    request.onreadystatechange = function () {
+      if (request.readyState === 4) {
+        if (request.status == 201) {
+          var response = JSON.parse(request.responseText);
+          console.log(JSON.stringify(response, null, 2));
+
           deferred.resolve(true);
         } else {
           deferred.reject(request);
